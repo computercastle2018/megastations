@@ -57,6 +57,31 @@ workflows:
           echo "After applying profiles:"
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles || true
 
+      - name: Validate App Store provisioning profile
+        script: |
+          PROFILE_DIR=~/Library/MobileDevice/Provisioning\ Profiles
+          EXPECTED_BUNDLE="com.midnet.ecommerce.mega"
+          EXPECTED_METHOD="AppStore"
+          FOUND_MATCH="false"
+          if [ -d "$PROFILE_DIR" ]; then
+            for p in "$PROFILE_DIR"/*.mobileprovision; do
+              [ -e "$p" ] || continue
+              NAME=$(grep -a -m1 "<key>Name</key>" "$p" | sed -e 's/.*<string>//' -e 's/<\/string>.*//') || true
+              APPID=$(security cms -D -i "$p" 2>/dev/null | /usr/libexec/PlistBuddy -c 'Print :Entitlements:application-identifier' /dev/stdin 2>/dev/null || true)
+              BUNDLE=${APPID#*.}
+              DIST_TYPE=$(security cms -D -i "$p" 2>/dev/null | /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' /dev/stdin >/dev/null 2>&1 && echo "DevelopmentOrAdHoc" || echo "AppStore")
+              if [ "$BUNDLE" = "$EXPECTED_BUNDLE" ] && [ "$DIST_TYPE" = "AppStore" ]; then
+                echo "✅ Found App Store profile: $NAME ($p)"
+                FOUND_MATCH="true"
+                break
+              fi
+            done
+          fi
+          if [ "$FOUND_MATCH" != "true" ]; then
+            echo "❌ No App Store provisioning profile for $EXPECTED_BUNDLE. Build will likely fail."
+            echo "Please create an App Store profile in Apple Developer portal and upload to Codemagic."
+          fi
+
       - name: Detect export_options.plist
         script: |
           FOUND=$(find /Users/builder -maxdepth 4 -name export_options.plist | head -1 || true)
@@ -84,6 +109,43 @@ workflows:
               --export-method=app-store \
               --no-confirm
           fi
+
+  ios-shorebird-release-dev:
+    name: iOS Shorebird Dev (No App Store Profile)
+    max_build_duration: 90
+    instance_type: mac_mini_m2
+    environment:
+      ios_signing:
+        distribution_type: development
+        bundle_identifier: com.midnet.ecommerce.mega
+      vars:
+        FLUTTER_VERSION: "3.32.8"
+    groups:
+      - app_store_credentials
+    scripts:
+      - name: Install Shorebird CLI
+        script: |
+          if [ ! -d "$HOME/.shorebird" ]; then
+            curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh | bash
+          fi
+          export PATH="$HOME/.shorebird/bin:$PATH"
+      - name: Verify shorebird.yaml
+        script: |
+          [ -f shorebird.yaml ] || (echo "Missing shorebird.yaml" && exit 1)
+      - name: Packages & Pods
+        script: |
+          flutter packages pub get
+          cd ios && pod install
+      - name: Apply profiles
+        script: |
+          xcode-project use-profiles
+      - name: Dev build (no App Store export)
+        script: |
+          export PATH="$HOME/.shorebird/bin:$PATH"
+          shorebird release ios --flutter-version "$FLUTTER_VERSION" --export-method=development --no-confirm
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - $HOME/Library/Application Support/shorebird/logs/*.log
     
     artifacts:
       - build/ios/ipa/*.ipa
