@@ -1,0 +1,87 @@
+name: Shorebird Release iOS
+
+on:
+  workflow_dispatch:
+    inputs:
+      flutter_version:
+        description: "Flutter version to use for Shorebird"
+        required: false
+        default: "3.32.8"
+
+jobs:
+  release-ios:
+    name: Release iOS
+    runs-on: macos-latest
+
+    env:
+      SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17 (for tooling)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Import signing certificates
+        if: ${{ secrets.IOS_CERT_P12_BASE64 && secrets.IOS_CERT_PASSWORD && secrets.IOS_PROFILE_MOBILEPROVISION_BASE64 }}
+        uses: apple-actions/import-codesign-certs@v3
+        with:
+          p12-file-base64: ${{ secrets.IOS_CERT_P12_BASE64 }}
+          p12-password: ${{ secrets.IOS_CERT_PASSWORD }}
+          mobileprovision-file-base64: ${{ secrets.IOS_PROFILE_MOBILEPROVISION_BASE64 }}
+
+      - name: Configure Xcode signing (optional)
+        if: ${{ env.XCODE_SCHEME != '' }}
+        run: |
+          echo "Using scheme: $XCODE_SCHEME"
+        env:
+          XCODE_SCHEME: ${{ vars.XCODE_SCHEME }}
+
+      - name: Install Shorebird CLI
+        run: |
+          if [ ! -x "$HOME/.shorebird/bin/shorebird" ]; then
+            curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh | bash
+          fi
+          echo "$HOME/.shorebird/bin" >> $GITHUB_PATH
+
+      - name: Verify shorebird.yaml exists
+        run: |
+          if [ ! -f "shorebird.yaml" ]; then
+            echo "❌ shorebird.yaml not found in workspace root!"
+            echo "Files in root:"
+            ls -la
+            exit 1
+          fi
+          echo "✅ shorebird.yaml found"
+          cat shorebird.yaml
+
+      - name: Show Shorebird & Flutter versions
+        run: |
+          shorebird --version
+          shorebird flutter versions list | head -20
+
+      - name: Ensure CocoaPods
+        run: |
+          pod --version || sudo gem install cocoapods --no-document
+          cd ios
+          pod repo update
+          pod install
+
+      - name: Release iOS with Shorebird
+        env:
+          FLUTTER_VERSION: ${{ github.event.inputs.flutter_version }}
+        run: |
+          pwd
+          ls -la shorebird.yaml
+          shorebird release ios --flutter-version "$FLUTTER_VERSION"
+
+      - name: Upload Shorebird logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shorebird-logs
+          path: ~/Library/Application\ Support/shorebird/logs/*.log
