@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "528326047070",
+    "project_id": "megastation-43475",
+    "storage_bucket": "megastation-43475.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528326047070:android:47553dddee87ffb4c3cbcf",
+        "android_client_info": {
+          "package_name": "com.midnet.ecommerce.mega"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528326047070-coth7f6a37hknuis7pppvak2ofv7ta5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLof7S1iRXzgN_l9h8kEAXCMuxBg88rzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528326047070-coth7f6a37hknuis7pppvak2ofv7ta5c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "528326047070-mbvms5bti6c0mf1e7hfngs6fd3nnhrqo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.midnet.ecommerce.mega"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528326047070:android:811c46178a54e24cc3cbcf",
+        "android_client_info": {
+          "package_name": "com.midnet.ecommerce.megastations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528326047070-coth7f6a37hknuis7pppvak2ofv7ta5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLof7S1iRXzgN_l9h8kEAXCMuxBg88rzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528326047070-coth7f6a37hknuis7pppvak2ofv7ta5c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "528326047070-mbvms5bti6c0mf1e7hfngs6fd3nnhrqo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.midnet.ecommerce.mega"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

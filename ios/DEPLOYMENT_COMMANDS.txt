@@ -1,0 +1,194 @@
+# iOS Fastlane Configuration (Optional - Advanced)
+# ==================================================
+# This file contains configuration for automated iOS deployment
+# Requires: gem install fastlane
+
+# To use Fastlane:
+# 1. Install: sudo gem install fastlane
+# 2. Initialize: cd ios && fastlane init
+# 3. Configure this file
+# 4. Run: fastlane beta (for TestFlight) or fastlane release (for App Store)
+
+# Quick Commands for Manual Deployment
+# ==================================================
+
+## 1. PREPARE ENVIRONMENT
+# Update Flutter dependencies
+flutter clean
+flutter pub get
+
+# Update iOS dependencies  
+cd ios
+pod repo update
+pod install
+cd ..
+
+## 2. GENERATE ICONS
+flutter pub run flutter_launcher_icons
+
+## 3. BUILD OPTIONS
+
+### Build for Testing (Debug)
+flutter build ios --debug
+
+### Build for Release (IPA)
+flutter build ipa --release
+
+### Build with specific bundle ID
+flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
+
+## 4. XCODE COMMANDS
+
+### Open Xcode workspace
+open ios/Runner.xcworkspace
+
+### Build and Archive (from command line)
+xcodebuild -workspace ios/Runner.xcworkspace \
+  -scheme Runner \
+  -configuration Release \
+  -archivePath build/ios/Runner.xcarchive \
+  archive
+
+### Export IPA from Archive
+xcodebuild -exportArchive \
+  -archivePath build/ios/Runner.xcarchive \
+  -exportPath build/ios/ipa \
+  -exportOptionsPlist ios/ExportOptions.plist
+
+## 5. UPLOAD TO APP STORE
+
+### Using xcrun (requires archive)
+xcrun altool --upload-app \
+  --type ios \
+  --file "build/ios/ipa/MegaStation.ipa" \
+  --apiKey YOUR_API_KEY \
+  --apiIssuer YOUR_ISSUER_ID
+
+### Using Transporter GUI
+# Open Transporter app and drag IPA file
+
+## 6. TESTFLIGHT
+
+### Upload to TestFlight (same as App Store upload)
+# After upload, build will appear in TestFlight section
+
+## 7. VERSION MANAGEMENT
+
+### Update version in pubspec.yaml
+# version: 8.0.2+12  (8.0.2 = version, 12 = build number)
+
+### Update version using command
+# No direct command, edit pubspec.yaml manually
+
+## 8. CERTIFICATE MANAGEMENT
+
+### List available certificates
+security find-identity -v -p codesigning
+
+### Download certificates from Apple
+# Go to: https://developer.apple.com/account/resources/certificates
+
+## 9. TROUBLESHOOTING
+
+### Clean build folder
+flutter clean
+rm -rf ios/Pods ios/Podfile.lock
+cd ios && pod install && cd ..
+
+### Fix signing issues
+cd ios
+pod deintegrate
+pod install
+cd ..
+
+### Clear Xcode derived data
+rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+## 10. USEFUL INFO
+
+# Current Bundle ID: com.midnet.ecommerce.mega
+# Current Version: 8.0.1
+# Current Build: 11
+# Min iOS Version: 12.0
+
+# Firebase Configured: ✓
+# Google Sign-In: ✓
+# Facebook Auth: ✓
+# Apple Sign In: ✓
+# Push Notifications: ✓
+
+## 11. PRE-SUBMISSION CHECKLIST
+
+# [ ] All features tested on real device
+# [ ] No debug code left
+# [ ] Privacy policy URL added
+# [ ] Support URL added
+# [ ] All permissions explained in Info.plist
+# [ ] Screenshots prepared (all required sizes)
+# [ ] App icon 1024x1024 ready
+# [ ] Description and keywords ready
+# [ ] Age rating completed
+# [ ] Demo account ready (if needed)
+# [ ] Version number updated
+# [ ] Build number incremented
+
+## 12. STORE LISTING PREP
+
+# Required Screenshots:
+# - 6.7" (1290x2796): iPhone 15 Pro Max
+# - 6.5" (1242x2688): iPhone 11 Pro Max
+# - 5.5" (1242x2208): iPhone 8 Plus (optional)
+# - iPad Pro 12.9" (2048x2732): (optional)
+
+# App Store Info:
+# Name: MegaStation
+# Subtitle: Multi-vendor Delivery Platform
+# Category: Food & Drink (or Shopping)
+# Content Rating: 4+
+
+## 13. APP STORE CONNECT URLS
+
+# Main Dashboard:
+# https://appstoreconnect.apple.com
+
+# My Apps:
+# https://appstoreconnect.apple.com/apps
+
+# TestFlight:
+# https://appstoreconnect.apple.com/testflight
+
+# Developer Portal:
+# https://developer.apple.com/account
+
+## 14. CONTACT INFO FOR REVIEW
+
+# You'll need to provide:
+# - First Name
+# - Last Name  
+# - Phone Number
+# - Email Address
+# - Demo Account Username (if login required)
+# - Demo Account Password (if login required)
+# - Notes for reviewer
+
+## 15. EXPORT OPTIONS
+
+# Create ios/ExportOptions.plist with:
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>method</key>
+    <string>app-store</string>
+    <key>teamID</key>
+    <string>YOUR_TEAM_ID</string>
+    <key>uploadBitcode</key>
+    <false/>
+    <key>uploadSymbols</key>
+    <true/>
+    <key>compileBitcode</key>
+    <false/>
+</dict>
+</plist>
+"""
