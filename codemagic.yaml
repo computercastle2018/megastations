@@ -120,8 +120,8 @@ workflows:
         bundle_identifier: com.midnet.ecommerce.mega
       vars:
         FLUTTER_VERSION: "3.32.8"
-    groups:
-      - app_store_credentials
+      groups:
+        - app_store_credentials
     scripts:
       - name: Install Shorebird CLI
         script: |
@@ -146,11 +146,7 @@ workflows:
     artifacts:
       - build/ios/ipa/*.ipa
       - $HOME/Library/Application Support/shorebird/logs/*.log
-    
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - $HOME/Library/Application Support/shorebird/logs/*.log
-    
+
     publishing:
       email:
         recipients:
@@ -158,10 +154,6 @@ workflows:
         notify:
           success: true
           failure: true
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
-        submit_to_app_store: false
 
   android-shorebird-release:
     name: Android Shorebird Release
