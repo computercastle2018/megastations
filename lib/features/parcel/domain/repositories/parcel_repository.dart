@@ -44,10 +44,8 @@ class ParcelRepository implements ParcelRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          videoContentDetails = VideoContentModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        videoContentDetails = VideoContentModel.fromJson(jsonDecode(cacheResponseData));
+          }
     return videoContentDetails;
   }
 
@@ -65,10 +63,8 @@ class ParcelRepository implements ParcelRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          whyChooseDetails = WhyChooseModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        whyChooseDetails = WhyChooseModel.fromJson(jsonDecode(cacheResponseData));
+          }
     return whyChooseDetails;
   }
 

@@ -229,7 +229,7 @@ class CartService implements CartServiceInterface {
         addonPrice = addonPrice + (addOnList[index].price! * cartModel.addOnIds![index].quantity!);
       }
     }
-    double discountedPrice = addonPrice + variationPrice + (cartModel.item!.price! * quantity) - PriceConverter.calculation(cartModel.item!.price!, discount, discountType!, quantity);
+    double discountedPrice = addonPrice + variationPrice + (cartModel.item!.price! * quantity) - PriceConverter.calculation(cartModel.item!.price!, discount, discountType, quantity);
     return discountedPrice;
   }
 

@@ -199,11 +199,9 @@ class StoreController extends GetxController implements GetxService {
 
   Future<void> getStoreBannerList(int? storeId) async {
     List<StoreBannerModel>? storeBanners = await storeServiceInterface.getStoreBannerList(storeId);
-    if (storeBanners != null) {
-      _storeBanners = [];
-      _storeBanners!.addAll(storeBanners);
-    }
-    update();
+    _storeBanners = [];
+    _storeBanners!.addAll(storeBanners);
+      update();
   }
 
   Future<void> getStoreList(int offset, bool reload, {DataSourceEnum source = DataSourceEnum.local}) async {
@@ -262,19 +260,15 @@ class StoreController extends GetxController implements GetxService {
       List<Store>? popularStoreList;
       if(dataSource == DataSourceEnum.local) {
         popularStoreList = await storeServiceInterface.getPopularStoreList(type, source: DataSourceEnum.local);
-        if (popularStoreList != null) {
-          _popularStoreList = [];
-          _popularStoreList!.addAll(popularStoreList);
-        }
-        update();
+        _popularStoreList = [];
+        _popularStoreList!.addAll(popularStoreList);
+              update();
         getPopularStoreList(false, type, notify, dataSource: DataSourceEnum.client, fromRecall: true);
       } else {
         popularStoreList = await storeServiceInterface.getPopularStoreList(type, source: DataSourceEnum.client);
-        if (popularStoreList != null) {
-          _popularStoreList = [];
-          _popularStoreList!.addAll(popularStoreList);
-        }
-        update();
+        _popularStoreList = [];
+        _popularStoreList!.addAll(popularStoreList);
+              update();
       }
 
     }
@@ -292,19 +286,15 @@ class StoreController extends GetxController implements GetxService {
       List<Store>? latestStoreList;
       if(dataSource == DataSourceEnum.local) {
         latestStoreList = await storeServiceInterface.getLatestStoreList(type, source: DataSourceEnum.local);
-        if (latestStoreList != null) {
-          _latestStoreList = [];
-          _latestStoreList!.addAll(latestStoreList);
-        }
-        update();
+        _latestStoreList = [];
+        _latestStoreList!.addAll(latestStoreList);
+              update();
         getLatestStoreList(false, type, notify, fromRecall: true, dataSource: DataSourceEnum.client);
       } else {
         latestStoreList = await storeServiceInterface.getLatestStoreList(type, source: DataSourceEnum.client);
-        if (latestStoreList != null) {
-          _latestStoreList = [];
-          _latestStoreList!.addAll(latestStoreList);
-        }
-        update();
+        _latestStoreList = [];
+        _latestStoreList!.addAll(latestStoreList);
+              update();
       }
     }
   }
@@ -320,19 +310,15 @@ class StoreController extends GetxController implements GetxService {
       List<Store>? latestStoreList;
       if(dataSource == DataSourceEnum.local) {
         latestStoreList = await storeServiceInterface.getTopOfferStoreList(source: DataSourceEnum.local, filterBy: _topOfferFilter, sortBy: _topOfferSort);
-        if (latestStoreList != null) {
-          _topOfferStoreList = [];
-          _topOfferStoreList!.addAll(latestStoreList);
-        }
-        update();
+        _topOfferStoreList = [];
+        _topOfferStoreList!.addAll(latestStoreList);
+              update();
         getTopOfferStoreList(false, notify, dataSource: DataSourceEnum.client, fromRecall: true);
       } else {
         latestStoreList = await storeServiceInterface.getTopOfferStoreList(source: DataSourceEnum.client, filterBy: _topOfferFilter, sortBy: _topOfferSort);
-        if (latestStoreList != null) {
-          _topOfferStoreList = [];
-          _topOfferStoreList!.addAll(latestStoreList);
-        }
-        update();
+        _topOfferStoreList = [];
+        _topOfferStoreList!.addAll(latestStoreList);
+              update();
       }
     }
   }

@@ -168,7 +168,7 @@ class ItemTitleViewWidget extends StatelessWidget {
         SizedBox(height: item!.ratingCount! > 0 ? Dimensions.paddingSizeExtraSmall : 0),
 
         Row(children: [
-          discount! > 0 ? Flexible(
+          discount > 0 ? Flexible(
             child: Text(
               '${PriceConverter.convertPrice(startingPrice)}'
                   '${endingPrice!= null ? ' - ${PriceConverter.convertPrice(endingPrice)}' : ''}',
@@ -278,7 +278,7 @@ class ItemTitleViewWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
 
-                discount! > 0 ? Text(
+                discount > 0 ? Text(
                   '${PriceConverter.convertPrice(startingPrice)}'
                       '${endingPrice!= null ? ' - ${PriceConverter.convertPrice(endingPrice)}' : ''}', textDirection: TextDirection.ltr,
                   style: robotoRegular.copyWith(color: Theme.of(context).hintColor, decoration: TextDecoration.lineThrough),

@@ -526,7 +526,7 @@ class LocationController extends GetxController implements GetxService {
 
     await Get.find<SplashController>().getModules();
     List<ModuleModel>? modules = Get.find<SplashController>().moduleList;
-    for(ModuleModel m in modules!){
+    for(ModuleModel m in modules){
       if(m.id == Get.find<StoreController>().store!.moduleId) {
         Get.find<SplashController>().setModule(m);
       }

@@ -96,13 +96,11 @@ class CategoryController extends GetxController implements GetxService {
     _subCategoryList = null;
     _categoryItemList = null;
     List<CategoryModel>? subCategoryList = await categoryServiceInterface.getSubCategoryList(categoryID);
-    if (subCategoryList != null) {
-      _subCategoryList= [];
-      _subCategoryList!.add(CategoryModel(id: int.parse(categoryID!), name: 'all'.tr));
-      _subCategoryList!.addAll(subCategoryList);
-      getCategoryItemList(categoryID, 1, 'all', false);
+    _subCategoryList= [];
+    _subCategoryList!.add(CategoryModel(id: int.parse(categoryID!), name: 'all'.tr));
+    _subCategoryList!.addAll(subCategoryList);
+    getCategoryItemList(categoryID, 1, 'all', false);
     }
-  }
 
   void setSubCategoryIndex(int index, String? categoryID) {
     _subCategoryIndex = index;

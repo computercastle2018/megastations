@@ -55,13 +55,11 @@ class CategoryRepository implements CategoryRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          categoryList = [];
-          jsonDecode(cacheResponseData).forEach((category) {
-            categoryList!.add(CategoryModel.fromJson(category));
-          });
-        }
-    }
+        categoryList = [];
+        jsonDecode(cacheResponseData).forEach((category) {
+          categoryList!.add(CategoryModel.fromJson(category));
+        });
+          }
 
     return categoryList;
   }

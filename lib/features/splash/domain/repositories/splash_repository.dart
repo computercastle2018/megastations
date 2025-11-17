@@ -32,10 +32,8 @@ class SplashRepository implements SplashRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          responseData = Response(statusCode: 200, body: jsonDecode(cacheResponseData));
-        }
-    }
+        responseData = Response(statusCode: 200, body: jsonDecode(cacheResponseData));
+          }
     return responseData;
   }
 
@@ -54,10 +52,8 @@ class SplashRepository implements SplashRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          landingModel = LandingModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        landingModel = LandingModel.fromJson(jsonDecode(cacheResponseData));
+          }
     return landingModel;
   }
 
@@ -146,11 +142,9 @@ class SplashRepository implements SplashRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          moduleList = [];
-          jsonDecode(cacheResponseData).forEach((storeCategory) => moduleList!.add(ModuleModel.fromJson(storeCategory)));
-        }
-    }
+        moduleList = [];
+        jsonDecode(cacheResponseData).forEach((storeCategory) => moduleList!.add(ModuleModel.fromJson(storeCategory)));
+          }
 
     return moduleList;
   }

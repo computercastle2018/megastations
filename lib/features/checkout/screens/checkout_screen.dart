@@ -997,7 +997,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
 
       if(deliveryCharge < minimumCharge) {
         deliveryCharge = minimumCharge;
-      }else if(maximumCharge != null && deliveryCharge > maximumCharge) {
+      }else if(deliveryCharge > maximumCharge) {
         deliveryCharge = maximumCharge;
       }
     }

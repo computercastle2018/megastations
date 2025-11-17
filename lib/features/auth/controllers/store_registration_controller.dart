@@ -245,16 +245,14 @@ class StoreRegistrationController extends GetxController implements GetxService 
     _restaurantLocation = null;
     _zoneIds = null;
     List<ZoneDataModel>? zones = await storeRegistrationServiceInterface.getZoneList();
-    if (zones != null) {
-      _zoneList = [];
-      _zoneList!.addAll(zones);
-      setLocation(LatLng(
-        double.parse(Get.find<SplashController>().configModel!.defaultLocation!.lat ?? '0'),
-        double.parse(Get.find<SplashController>().configModel!.defaultLocation!.lng ?? '0'),
-      ), forStoreRegistration: true, zoneId: _zoneList![0].id);
-      await getModules(_zoneList![0].id);
-    }
-    update();
+    _zoneList = [];
+    _zoneList!.addAll(zones);
+    setLocation(LatLng(
+      double.parse(Get.find<SplashController>().configModel!.defaultLocation!.lat ?? '0'),
+      double.parse(Get.find<SplashController>().configModel!.defaultLocation!.lng ?? '0'),
+    ), forStoreRegistration: true, zoneId: _zoneList![0].id);
+    await getModules(_zoneList![0].id);
+      update();
   }
 
   void setLocation(LatLng location, {bool forStoreRegistration = false, int? zoneId}) async {
@@ -289,11 +287,9 @@ class StoreRegistrationController extends GetxController implements GetxService 
 
   Future<void> getModules(int? zoneId) async {
     List<ModuleModel>? modules = await storeRegistrationServiceInterface.getModules(zoneId);
-    if (modules != null) {
-      _moduleList = [];
-      _moduleList!.addAll(modules);
-    }
-    update();
+    _moduleList = [];
+    _moduleList!.addAll(modules);
+      update();
   }
 
   void resetStoreRegistration(){
@@ -327,15 +323,11 @@ class StoreRegistrationController extends GetxController implements GetxService 
       Get.find<HomeController>().saveRegistrationSuccessfulSharedPref(true);
       int? storeId = response.body['store_id'];
       int? packageId = response.body['package_id'];
-      if(packageId == null) {
-        Get.find<BusinessController>().submitBusinessPlan(storeId: storeId!, packageId: null);
-      } else {
-        Get.toNamed(RouteHelper.getSubscriptionPaymentRoute(
-          storeId: storeId,
-          packageId: packageId,
-        ));
-      }
-    }
+      Get.toNamed(RouteHelper.getSubscriptionPaymentRoute(
+        storeId: storeId,
+        packageId: packageId,
+      ));
+        }
     _isLoading = false;
     update();
   }

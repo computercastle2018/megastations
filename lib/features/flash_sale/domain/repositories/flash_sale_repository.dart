@@ -29,10 +29,8 @@ class FlashSaleRepository implements FlashSaleRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          flashSaleModel = FlashSaleModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        flashSaleModel = FlashSaleModel.fromJson(jsonDecode(cacheResponseData));
+          }
 
     return flashSaleModel;
   }

@@ -34,11 +34,9 @@ class ReviewController extends GetxController implements GetxService {
   Future<void> getStoreReviewList(String? storeID) async {
     _storeReviewList = null;
     List<ReviewModel>? storeReviewList = await reviewServiceInterface.getStoreReviewList(storeID);
-    if (storeReviewList != null) {
-      _storeReviewList = [];
-      _storeReviewList!.addAll(storeReviewList);
-    }
-    update();
+    _storeReviewList = [];
+    _storeReviewList!.addAll(storeReviewList);
+      update();
   }
 
   void initRatingData(List<OrderDetailsModel> orderDetailsList) {

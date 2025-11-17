@@ -105,7 +105,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
         int? stock = item.stock ?? 0;
 
         if(discountType == 'amount'){
-          discount = discount! * itemController.quantity!;
+          discount = discount * itemController.quantity!;
         }
 
         if(_newVariation) {
@@ -421,7 +421,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                     Builder(
                         builder: (context) {
                           double? cost = PriceConverter.convertWithDiscount((price! * itemController.quantity!), discount, discountType);
-                          double withAddonCost = cost! + addonsCost;
+                          double withAddonCost = cost + addonsCost;
                           return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                             Text('${'total_amount'.tr}:', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).primaryColor)),
                             const SizedBox(width: Dimensions.paddingSizeExtraSmall),

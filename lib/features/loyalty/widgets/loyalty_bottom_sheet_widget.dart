@@ -112,7 +112,7 @@ class _LoyaltyBottomSheetWidgetState extends State<LoyaltyBottomSheetWidget> {
                           Get.back();
                         }
                         showCustomSnackBar('${'please_exchange_more_then'.tr} $minimumExchangePoint ${'points'.tr}');
-                      }else if(point! < amount){
+                      }else if(point < amount){
                         if(Get.isBottomSheetOpen!){
                           Get.back();
                         }

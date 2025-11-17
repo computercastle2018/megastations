@@ -38,20 +38,16 @@ class CouponController extends GetxController implements GetxService {
 
   Future<void> getCouponList() async {
     List<CouponModel>? couponList = await couponServiceInterface.getCouponList();
-    if (couponList != null) {
-      _couponList = [];
-      _couponList!.addAll(couponList);
-    }
-    update();
+    _couponList = [];
+    _couponList!.addAll(couponList);
+      update();
   }
 
   Future<void> getTaxiCouponList() async {
     List<CouponModel>? taxiCouponList = await couponServiceInterface.getTaxiCouponList();
-    if (taxiCouponList != null) {
-      _taxiCouponList = [];
-      _taxiCouponList!.addAll(taxiCouponList);
-    }
-    update();
+    _taxiCouponList = [];
+    _taxiCouponList!.addAll(taxiCouponList);
+      update();
   }
 
   Future<double?> applyCoupon(String coupon, double order, double? deliveryCharge, int? storeID) async {

@@ -31,13 +31,11 @@ class AdvertisementRepository implements AdvertisementRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          advertisementList = [];
-          jsonDecode(cacheResponseData).forEach((data) {
-            advertisementList?.add(AdvertisementModel.fromJson(data));
-          });
-        }
-    }
+        advertisementList = [];
+        jsonDecode(cacheResponseData).forEach((data) {
+          advertisementList?.add(AdvertisementModel.fromJson(data));
+        });
+          }
     Response response = await apiClient.getData(AppConstants.advertisementListUri);
     if(response.statusCode == 200) {
       advertisementList = [];

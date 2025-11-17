@@ -63,7 +63,7 @@ class _ItemViewAllScreenState extends State<ItemViewAllScreen> {
         items = itemController.reviewedItemList;
       }
 
-      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 300 && items != null && !itemController.isLoading) {
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 300 && !itemController.isLoading) {
 
         int pageSize = (itemController.pageSize! / 10).ceil();
         if (itemController.offset < pageSize) {
@@ -388,14 +388,14 @@ class ItemCardWidget extends StatelessWidget {
                 ) : const SizedBox(),
                 SizedBox(height: (Get.find<SplashController>().configModel!.moduleConfig!.module!.unit! && item.unitType != null) ? Dimensions.paddingSizeExtraSmall : 0),
 
-                discount != null && discount > 0 ? Text(
+                discount > 0 ? Text(
                   PriceConverter.convertPrice(Get.find<ItemController>().getStartingPrice(item)),
                   style: robotoMedium.copyWith(
                     fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).disabledColor,
                     decoration: TextDecoration.lineThrough,
                   ), textDirection: TextDirection.ltr,
                 ) : const SizedBox(),
-                SizedBox(height: discount != null && discount > 0 ? Dimensions.paddingSizeExtraSmall : 0),
+                SizedBox(height: discount > 0 ? Dimensions.paddingSizeExtraSmall : 0),
 
                 Text(
                   PriceConverter.convertPrice(

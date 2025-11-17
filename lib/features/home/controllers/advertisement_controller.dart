@@ -21,17 +21,13 @@ class AdvertisementController extends GetxController implements GetxService {
     List<AdvertisementModel>? responseAdvertisement;
     if(dataSource == DataSourceEnum.local) {
       responseAdvertisement = await advertisementServiceInterface.getAdvertisementList(dataSource);
-      if (responseAdvertisement != null) {
-        _advertisementList = responseAdvertisement;
-      }
-      update();
+      _advertisementList = responseAdvertisement;
+          update();
       getAdvertisementList(dataSource: DataSourceEnum.client);
     } else {
       responseAdvertisement = await advertisementServiceInterface.getAdvertisementList(dataSource);
-      if (responseAdvertisement != null) {
-        _advertisementList = responseAdvertisement;
-      }
-      update();
+      _advertisementList = responseAdvertisement;
+          update();
     }
   }
 

@@ -31,10 +31,8 @@ class ItemRepository implements ItemRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          basicMedicineModel = BasicMedicineModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        basicMedicineModel = BasicMedicineModel.fromJson(jsonDecode(cacheResponseData));
+          }
     return basicMedicineModel;
   }
 
@@ -119,10 +117,8 @@ class ItemRepository implements ItemRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          popularItemList = ItemModel.fromJson(jsonDecode(cacheResponseData));
-        }
-        break;
+        popularItemList = ItemModel.fromJson(jsonDecode(cacheResponseData));
+              break;
     }
 
     return popularItemList;
@@ -161,10 +157,8 @@ class ItemRepository implements ItemRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          itemModel = ItemModel.fromJson(jsonDecode(cacheResponseData));
-        }
-        break;
+        itemModel = ItemModel.fromJson(jsonDecode(cacheResponseData));
+              break;
     }
 
     return itemModel;
@@ -203,10 +197,8 @@ class ItemRepository implements ItemRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          discountedItem = ItemModel.fromJson(jsonDecode(cacheResponseData));
-        }
-        break;
+        discountedItem = ItemModel.fromJson(jsonDecode(cacheResponseData));
+              break;
     }
 
     return discountedItem;
@@ -227,10 +219,8 @@ class ItemRepository implements ItemRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          featuredCategoriesItem = ItemModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        featuredCategoriesItem = ItemModel.fromJson(jsonDecode(cacheResponseData));
+          }
 
     return featuredCategoriesItem;
   }
@@ -251,11 +241,9 @@ class ItemRepository implements ItemRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          recommendedItemList = [];
-          recommendedItemList.addAll(ItemModel.fromJson(jsonDecode(cacheResponseData)).items!);
-        }
-    }
+        recommendedItemList = [];
+        recommendedItemList.addAll(ItemModel.fromJson(jsonDecode(cacheResponseData)).items!);
+          }
 
     return recommendedItemList;
   }

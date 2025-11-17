@@ -30,11 +30,9 @@ class BrandsRepository implements BrandsRepositoryInterface{
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          brandList = [];
-          jsonDecode(cacheResponseData).forEach((brand) => brandList!.add(BrandModel.fromJson(brand)));
-        }
-    }
+        brandList = [];
+        jsonDecode(cacheResponseData).forEach((brand) => brandList!.add(BrandModel.fromJson(brand)));
+          }
 
     return brandList;
   }

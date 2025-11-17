@@ -195,11 +195,9 @@ class SearchController extends GetxController implements GetxService {
 
   void getSuggestedItems() async {
     List<Item>? suggestedItemList = await searchServiceInterface.getSuggestedItems();
-    if(suggestedItemList != null) {
-      _suggestedItemList = [];
-      _suggestedItemList!.addAll(suggestedItemList);
-    }
-    update();
+    _suggestedItemList = [];
+    _suggestedItemList!.addAll(suggestedItemList);
+      update();
   }
 
   void searchData(String? query, bool fromHome) async {

@@ -63,10 +63,8 @@ class StoreRepository implements StoreRepositoryInterface {
       case DataSourceEnum.local:
 
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          storeModel = StoreModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        storeModel = StoreModel.fromJson(jsonDecode(cacheResponseData));
+          }
     return storeModel;
   }
 
@@ -86,11 +84,9 @@ class StoreRepository implements StoreRepositoryInterface {
       case DataSourceEnum.local:
 
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          popularStoreList = [];
-          jsonDecode(cacheResponseData).forEach((store) => popularStoreList!.add(Store.fromJson(store)));
-        }
-    }
+        popularStoreList = [];
+        jsonDecode(cacheResponseData).forEach((store) => popularStoreList!.add(Store.fromJson(store)));
+          }
     return popularStoreList;
   }
 
@@ -109,11 +105,9 @@ class StoreRepository implements StoreRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          latestStoreList = [];
-          jsonDecode(cacheResponseData).forEach((store) => latestStoreList!.add(Store.fromJson(store)));
-        }
-    }
+        latestStoreList = [];
+        jsonDecode(cacheResponseData).forEach((store) => latestStoreList!.add(Store.fromJson(store)));
+          }
 
     return latestStoreList;
   }
@@ -133,11 +127,9 @@ class StoreRepository implements StoreRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          topOfferStoreList = [];
-          jsonDecode(cacheResponseData).forEach((store) => topOfferStoreList!.add(Store.fromJson(store)));
-        }
-    }
+        topOfferStoreList = [];
+        jsonDecode(cacheResponseData).forEach((store) => topOfferStoreList!.add(Store.fromJson(store)));
+          }
     return topOfferStoreList;
   }
 
@@ -160,11 +152,9 @@ class StoreRepository implements StoreRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          featuredStoreList = [];
-          jsonDecode(cacheResponseData).forEach((store) => featuredStoreList!.add(Store.fromJson(store)));
-        }
-    }
+        featuredStoreList = [];
+        jsonDecode(cacheResponseData).forEach((store) => featuredStoreList!.add(Store.fromJson(store)));
+          }
     return featuredStoreList;
   }
 
@@ -183,11 +173,9 @@ class StoreRepository implements StoreRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          visitAgainStoreList = [];
-          jsonDecode(cacheResponseData).forEach((store) => visitAgainStoreList!.add(Store.fromJson(store)));
-        }
-    }
+        visitAgainStoreList = [];
+        jsonDecode(cacheResponseData).forEach((store) => visitAgainStoreList!.add(Store.fromJson(store)));
+          }
     return visitAgainStoreList;
   }
 
@@ -289,11 +277,9 @@ class StoreRepository implements StoreRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          recommendedStoreList = [];
-          jsonDecode(cacheResponseData).forEach((store) => recommendedStoreList!.add(Store.fromJson(store)));
-        }
-    }
+        recommendedStoreList = [];
+        jsonDecode(cacheResponseData).forEach((store) => recommendedStoreList!.add(Store.fromJson(store)));
+          }
 
     return recommendedStoreList;
   }

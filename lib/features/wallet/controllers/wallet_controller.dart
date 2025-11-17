@@ -137,14 +137,12 @@ class WalletController extends GetxController implements GetxService {
     }
 
     List<FundBonusModel>? bonuses = await walletServiceInterface.getWalletBonusList();
-    if (bonuses != null) {
-      _fundBonusList = [];
-      _fundBonusList!.addAll(bonuses);
+    _fundBonusList = [];
+    _fundBonusList!.addAll(bonuses);
 
-      _isLoading = false;
-      update();
+    _isLoading = false;
+    update();
     }
-  }
 
   void setCurrentIndex(int index, bool notify) {
     _currentIndex = index;

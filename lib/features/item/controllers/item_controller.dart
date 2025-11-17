@@ -621,12 +621,10 @@ class ItemController extends GetxController implements GetxService {
       update();
     }
     List<Item>? items = await itemServiceInterface.getConditionsWiseItems(id);
-    if (items != null) {
-      _conditionWiseProduct = [];
-      _conditionWiseProduct!.addAll(items);
-      _isLoading = false;
-    }
-    update();
+    _conditionWiseProduct = [];
+    _conditionWiseProduct!.addAll(items);
+    _isLoading = false;
+      update();
   }
 
   Future<void> getCommonConditions(bool notify) async {
@@ -635,11 +633,9 @@ class ItemController extends GetxController implements GetxService {
       update();
     }
     List<CommonConditionModel>? conditions = await itemServiceInterface.getCommonConditions();
-    if (conditions != null) {
-      _commonConditions!.addAll(conditions);
-      _isLoading = false;
-    }
-    update();
+    _commonConditions!.addAll(conditions);
+    _isLoading = false;
+      update();
   }
 
   Future<void> getItemDetails({required int itemId, CartModel? cart, Item? item}) async {

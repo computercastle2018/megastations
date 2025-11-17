@@ -38,11 +38,9 @@ class CampaignRepository implements CampaignRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          basicCampaignList = [];
-          jsonDecode(cacheResponseData).forEach((campaign) => basicCampaignList!.add(BasicCampaignModel.fromJson(campaign)));
-        }
-    }
+        basicCampaignList = [];
+        jsonDecode(cacheResponseData).forEach((campaign) => basicCampaignList!.add(BasicCampaignModel.fromJson(campaign)));
+          }
 
     return basicCampaignList;
   }
@@ -62,11 +60,9 @@ class CampaignRepository implements CampaignRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          itemCampaignList = [];
-          jsonDecode(cacheResponseData).forEach((camp) => itemCampaignList!.add(Item.fromJson(camp)));
-        }
-    }
+        itemCampaignList = [];
+        jsonDecode(cacheResponseData).forEach((camp) => itemCampaignList!.add(Item.fromJson(camp)));
+          }
 
     return itemCampaignList;
   }

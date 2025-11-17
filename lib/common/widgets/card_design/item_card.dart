@@ -159,7 +159,7 @@ class ItemCard extends StatelessWidget {
                               style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).hintColor),
                             ) : const SizedBox(),
 
-                            discount != null && discount > 0  ? Text(
+                            discount > 0  ? Text(
                               PriceConverter.convertPrice(Get.find<ItemController>().getStartingPrice(item)),
                               style: robotoMedium.copyWith(
                                 fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).disabledColor,

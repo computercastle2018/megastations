@@ -216,13 +216,11 @@ class CartController extends GetxController implements GetxService {
     bool success = false;
     update();
     List<OnlineCartModel>? onlineCartList = await cartServiceInterface.addToCartOnline(cart);
-    if(onlineCartList != null) {
-      _cartList = [];
-      _cartList.addAll(cartServiceInterface.formatOnlineCartToLocalCart(onlineCartModel: onlineCartList));
-      calculationCart();
-      success = true;
-    }
-    _isLoading = false;
+    _cartList = [];
+    _cartList.addAll(cartServiceInterface.formatOnlineCartToLocalCart(onlineCartModel: onlineCartList));
+    calculationCart();
+    success = true;
+      _isLoading = false;
     update();
 
     return success;
@@ -233,13 +231,11 @@ class CartController extends GetxController implements GetxService {
     bool success = false;
     update();
     List<OnlineCartModel>? onlineCartList = await cartServiceInterface.updateCartOnline(cart);
-    if(onlineCartList != null) {
-      _cartList = [];
-      _cartList.addAll(cartServiceInterface.formatOnlineCartToLocalCart(onlineCartModel: onlineCartList));
-      calculationCart();
-      success = true;
-    }
-    _isLoading = false;
+    _cartList = [];
+    _cartList.addAll(cartServiceInterface.formatOnlineCartToLocalCart(onlineCartModel: onlineCartList));
+    calculationCart();
+    success = true;
+      _isLoading = false;
     update();
 
     return success;
@@ -262,12 +258,10 @@ class CartController extends GetxController implements GetxService {
     if(ModuleHelper.getModule() != null || ModuleHelper.getCacheModule() != null) {
       _isLoading = true;
       List<OnlineCartModel>? onlineCartList = await cartServiceInterface.getCartDataOnline();
-      if(onlineCartList != null) {
-        _cartList = [];
-        _cartList.addAll(cartServiceInterface.formatOnlineCartToLocalCart(onlineCartModel: onlineCartList));
-        calculationCart();
-      }
-      _isLoading = false;
+      _cartList = [];
+      _cartList.addAll(cartServiceInterface.formatOnlineCartToLocalCart(onlineCartModel: onlineCartList));
+      calculationCart();
+          _isLoading = false;
       update();
     }
   }

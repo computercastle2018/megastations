@@ -28,21 +28,19 @@ class _GetServiceVideoWidgetState extends State<GetServiceVideoWidget> {
 
       String? convertedUrl = YoutubePlayerController.convertUrlToId(url);
 
-      if (convertedUrl != null) {
-        _controller = YoutubePlayerController.fromVideoId(
-          videoId: convertedUrl,
-          autoPlay: false,
-          params: const YoutubePlayerParams(
-            showControls: true,
-            mute: false,
-            loop: false,
-            enableCaption: false,
-            showVideoAnnotations: false,
-            showFullscreenButton: false,
-          ),
-        );
-      }
-    } else if(widget.fileVideoUrl.isNotEmpty){
+      _controller = YoutubePlayerController.fromVideoId(
+        videoId: convertedUrl,
+        autoPlay: false,
+        params: const YoutubePlayerParams(
+          showControls: true,
+          mute: false,
+          loop: false,
+          enableCaption: false,
+          showVideoAnnotations: false,
+          showFullscreenButton: false,
+        ),
+      );
+        } else if(widget.fileVideoUrl.isNotEmpty){
       _isYoutubeVideo = false;
       configureForMp4(widget.fileVideoUrl);
     }

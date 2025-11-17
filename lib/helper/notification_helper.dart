@@ -192,14 +192,14 @@ class NotificationHelper {
       image = (message.data['image'] != null && message.data['image'].isNotEmpty) ? message.data['image'].startsWith('http') ? message.data['image']
         : '${AppConstants.baseUrl}/storage/app/public/notification/${message.data['image']}' : null;
 
-      if(image != null && image.isNotEmpty) {
+      if(image.isNotEmpty) {
         try{
           await showBigPictureNotificationHiddenLargeIcon(title, body, orderID, notificationBody, image, fln);
         }catch(e) {
-          await showBigTextNotification(title, body!, orderID, notificationBody, fln);
+          await showBigTextNotification(title, body, orderID, notificationBody, fln);
         }
       }else {
-        await showBigTextNotification(title, body!, orderID, notificationBody, fln);
+        await showBigTextNotification(title, body, orderID, notificationBody, fln);
       }
     }
   }

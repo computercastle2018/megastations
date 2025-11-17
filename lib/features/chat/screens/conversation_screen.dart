@@ -189,11 +189,11 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
                                     user != null ? Text(
                                       '${user.fName} ${user.lName}', style: robotoMedium,
-                                    ) : Text('${type!.tr} ${'deleted'.tr}', style: robotoMedium),
+                                    ) : Text('${type.tr} ${'deleted'.tr}', style: robotoMedium),
                                     const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                                     user != null ? Text(
-                                      type!.tr,
+                                      type.tr,
                                       style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
                                     ) : const SizedBox(),
                                   ])),

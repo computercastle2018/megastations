@@ -159,11 +159,9 @@ class ParcelController extends GetxController implements GetxService {
 
   Future<void> getParcelCategoryList() async {
     List<ParcelCategoryModel>? categoryModelList = await parcelServiceInterface.getParcelCategory();
-    if(categoryModelList != null) {
-      _parcelCategoryList = [];
-      _parcelCategoryList!.addAll(categoryModelList);
-    }
-    update();
+    _parcelCategoryList = [];
+    _parcelCategoryList!.addAll(categoryModelList);
+      update();
   }
 
   void setPickupAddress(AddressModel? addressModel, bool notify) {

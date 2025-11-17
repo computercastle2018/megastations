@@ -201,7 +201,7 @@ class ReviewItemCard extends StatelessWidget {
                               ]) : const SizedBox(),
 
                               Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                                discount != null && discount > 0 ? Text(
+                                discount > 0 ? Text(
                                   PriceConverter.convertPrice(
                                     Get.find<ItemController>().getStartingPrice(item!),
                                   ),
@@ -240,7 +240,7 @@ class ReviewItemCard extends StatelessWidget {
                               ) : const SizedBox(),
 
                               Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                              discount != null && discount > 0 ? Text(
+                              discount > 0 ? Text(
                                   PriceConverter.convertPrice(
                                     Get.find<ItemController>().getStartingPrice(item!),
                                   ),

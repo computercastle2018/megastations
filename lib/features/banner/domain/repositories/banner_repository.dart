@@ -46,10 +46,8 @@ class BannerRepository implements BannerRepositoryInterface {
       case DataSourceEnum.local:
 
         String? cacheResponseData = await LocalClient.organize(source, cacheId, null, null);
-        if(cacheResponseData != null) {
-          bannerModel = BannerModel.fromJson(jsonDecode(cacheResponseData));
-        }
-    }
+        bannerModel = BannerModel.fromJson(jsonDecode(cacheResponseData));
+          }
 
 
     return bannerModel;

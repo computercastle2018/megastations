@@ -185,7 +185,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                               '${endingPrice!= null ? ' - ${PriceConverter.convertPrice(endingPrice, discount: discount, discountType: discountType)}' : ''}',
                           style: robotoBold.copyWith(fontSize: Dimensions.fontSizeSmall), textDirection: TextDirection.ltr,
                         ),
-                        SizedBox(width: discount! > 0 ? Dimensions.paddingSizeExtraSmall : 0),
+                        SizedBox(width: discount > 0 ? Dimensions.paddingSizeExtraSmall : 0),
 
                         discount > 0 ? Text(
                           '${PriceConverter.convertPrice(startingPrice)}'
